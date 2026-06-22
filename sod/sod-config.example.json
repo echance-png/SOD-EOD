@@ -1,0 +1,15 @@
+{
+  "user_name": "Your Name",
+  "weather_location": "City,ST",
+  "wiki_root": "~/Documents/my-wiki",
+  "config_root": "~/.claude or ~/.hermes or your agent's config dir",
+  "timezone": "America/New_York",
+  "jira_project": "ENG",
+  "jira_board_id": 42,
+  "jira_connection": "MCP or API_TOKEN",
+  "slack_bot_filters": {
+    "jira": { "id": "YOUR_JIRA_BOT_ID", "action": "collapse" },
+    "calendar": { "id": "YOUR_GCAL_BOT_ID", "action": "filter" },
+    "automation": { "id": "YOUR_AUTOMATION_BOT_ID", "action": "collapse_empty" }
+  }
+}

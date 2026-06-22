@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Real config files (keep only .example.json versions)
+sod/sod-config.json
+eod/eod-scope.json
+
+# Editor / IDE
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

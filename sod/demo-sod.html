@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morning Digest — Wednesday 06/18/2026</title>
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --ink: #202020;
+      --muted: #686159;
+      --line: #c9beb0;
+      --accent: #6b4f3f;
+      --accent-2: #2f4a48;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(1120px, calc(100vw - 80px));
+      margin: 0 auto;
+      padding: 48px 0 72px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 56px;
+      align-items: end;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(38px, 4.8vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      font-weight: 760;
+    }
+
+    .date-line {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .banner {
+      margin: 10px 0 0;
+      color: var(--accent);
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .weather {
+      border-top: 3px solid var(--accent-2);
+      padding-top: 18px;
+    }
+
+    .weather .label,
+    .meta-label {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .weather-main {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .temp {
+      font-size: 58px;
+      line-height: 1;
+      letter-spacing: -0.055em;
+      font-weight: 720;
+    }
+
+    .condition {
+      color: var(--accent-2);
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .weather-detail {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .meta-block {
+      min-height: 86px;
+    }
+
+    .meta-value {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 62px;
+      padding-top: 42px;
+    }
+
+    section {
+      padding: 0 0 34px;
+      margin: 0 0 34px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: var(--accent-2);
+      font-size: 15px;
+      line-height: 1.2;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li {
+      margin: 8px 0;
+      padding-left: 3px;
+    }
+
+    .meeting-time {
+      font-variant-numeric: tabular-nums;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 8px;
+      margin-left: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .badge.needs-action {
+      color: var(--accent-2);
+      border-color: var(--accent-2);
+    }
+
+    .meet-link {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 6px;
+    }
+
+    .meet-link:hover {
+      text-decoration: underline;
+    }
+
+    .ticket-key {
+      font-family: ui-monospace, SF Mono, Menlo, monospace;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    .group-label {
+      margin: 14px 0 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .group-label:first-child {
+      margin-top: 0;
+    }
+
+    .dm-meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    aside {
+      padding-left: 34px;
+      border-left: 1px solid var(--line);
+    }
+
+    .backlog-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .count-marker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      margin-right: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 760;
+      font-variant-numeric: tabular-nums;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    footer code {
+      font-family: ui-monospace, SF Mono, Menlo, monospace;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    @media (max-width: 940px) {
+      .page {
+        width: min(100% - 36px, 760px);
+        padding-top: 28px;
+      }
+
+      header,
+      main,
+      .status-strip,
+      .backlog-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      aside {
+        padding-left: 0;
+        border-left: 0;
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { width: auto; margin: 0; padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <p class="eyebrow">Morning Digest</p>
+        <h1>Good morning, Alex.</h1>
+        <p class="date-line">Today is Wednesday, 06/18/2026.</p>
+        
+      </div>
+
+      <div class="weather" aria-label="Seattle, WA weather summary">
+        <p class="label">Seattle, WA</p>
+        <div class="weather-main">
+          <div class="temp">62°</div>
+          <div class="condition">Partly cloudy</div>
+        </div>
+        <p class="weather-detail">High 71° / Low 54° · light breeze · dry morning</p>
+      </div>
+    </header>
+
+    <div class="status-strip">
+      <div class="meta-block">
+        <p class="meta-label">Run status</p>
+        <p class="meta-value">Generated 08:02 PDT</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Sprint</p>
+        <p class="meta-value">ENG S14 2026</p>
+      </div>
+      <div class="meta-block">
+        <p class="meta-label">Workdays left</p>
+        <p class="meta-value">6 workdays</p>
+      </div>
+    </div>
+
+    <main>
+      <div>
+        <section data-section="calendar">
+          <h2>Today's calendar</h2>
+          <p class="lead">🏠 Working from home today</p>
+<ul>
+  <li><span class="meeting-time">09:00–09:30</span> — Engineering standup <a class="meet-link" href="#">join</a></li>
+  <li><span class="meeting-time">10:00–10:45</span> — Sprint planning <span class="badge needs-action">needs action</span> <a class="meet-link" href="#">join</a></li>
+  <li><span class="meeting-time">13:00–13:30</span> — 1:1 with Jordan <a class="meet-link" href="#">join</a></li>
+  <li><span class="meeting-time">15:00–16:00</span> — Architecture review — Auth service migration <a class="meet-link" href="#">join</a></li>
+</ul>
+        </section>
+
+        <section data-section="sprint">
+          <h2>Sprint — my tickets</h2>
+          <p class="group-label">In Progress (2)</p>
+<ul>
+  <li><span class="ticket-key">ENG-2847</span> — Migrate auth service to new OAuth2 provider <span class="dm-meta">(High)</span></li>
+  <li><span class="ticket-key">ENG-2851</span> — Add rate limiting to public API endpoints <span class="dm-meta">(Medium)</span></li>
+</ul>
+<p class="group-label">To Do (3)</p>
+<ul>
+  <li><span class="ticket-key">ENG-2860</span> — Update Terraform modules for staging VPC <span class="dm-meta">(High)</span></li>
+  <li><span class="ticket-key">ENG-2863</span> — Document runbook for auth service failover <span class="dm-meta">(Medium)</span></li>
+  <li><span class="ticket-key">ENG-2865</span> — Investigate flaky integration tests in CI <span class="dm-meta">(Low)</span></li>
+</ul>
+        </section>
+
+        <section data-section="dms">
+          <h2>Slack DMs since your last EOD</h2>
+          <ul>
+  <li><span class="dm-meta">22:14 · Jordan Kim</span> — Hey, can you review the auth migration PR before standup tomorrow? It's #4821</li>
+  <li><span class="dm-meta">23:07 · Priya Sharma</span> — FYI the staging deploy went through clean, all smoke tests passing</li>
+  <li><span class="dm-meta">07:45 · Marcus Chen</span> — Quick question about the rate limiter config — are we doing per-user or per-org buckets?</li>
+  <li>Jira: 6 notifications, most recent: ENG-2847 status changed to In Review</li>
+  <li><span class="dm-meta">Other bots: 3 notifications</span></li>
+</ul>
+        </section>
+
+        <section data-section="carryforward">
+          <h2>Carrying forward from 2026-06-17</h2>
+          <div class="backlog-grid">
+            <div>
+              <h3><span class="count-marker">3</span>Open questions</h3>
+              <ul>
+  <li><strong>Auth migration rollback plan</strong> — Need to finalize the rollback procedure before going to production. Jordan's PR may have implications.</li>
+  <li><strong>Rate limiter bucket strategy</strong> — Per-user vs per-org bucketing. Marcus asked about this; need to decide before implementation goes further.</li>
+  <li><strong>Staging VPC peering</strong> — Terraform plan showed drift on the peering connection. Need to investigate before applying.</li>
+</ul>
+            </div>
+            <div>
+              <h3><span class="count-marker">1</span>ADR candidates</h3>
+              <ul>
+  <li><strong>OAuth2 provider selection</strong> — Evaluated Auth0 vs Okta vs custom. Going with Auth0 based on cost and SDK maturity. Document the trade-offs.</li>
+</ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section>
+          <h2>Suggested focus</h2>
+          <ol>
+  <li>Review Jordan's auth migration PR (#4821) before standup at 09:00</li>
+  <li>Respond to Marcus on rate limiter bucketing strategy — block on ENG-2851</li>
+  <li>Prep talking points for architecture review at 15:00 — auth failover approach</li>
+  <li>Investigate Terraform drift on staging VPC peering before applying changes</li>
+</ol>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      Generated by <code>/sod</code> at 2026-06-18 08:02 PDT · Last EOD: 2026-06-17 (1 days ago) · Sources: jira (5 tickets), gcal (4 events), slack (3 humans, 2 bot lines), weather
+    </footer>
+  </div>
+</body>
+</html>
